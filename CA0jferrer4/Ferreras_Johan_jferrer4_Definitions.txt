@@ -1,0 +1,11 @@
+Johan Ferreras
+
+rmdir: This command removes directory files only if they are empty. One thing I did not know about this command though is that it is possible to remove a directory even if it is not empty by using --ignore-fail-on-non-empty. Additionally, it is possible to remove a directory and its parents by using the -p tag.
+
+mv: This command allows you to rename or move files to another directory. One thing I did not know is that it was possible to make backups of files with the -b tag. Another thing the man command helped me learn was that mv can overwrite files without even asking by using -f or force.
+
+pwd: This stands for print working directory and it prints out the location where terminal currently is open. Using it allows you to see all the specific location you are in but with the -L tag it ommits some of the unnecessary information and prints out directories starting at the home directory.
+
+mkdir: This means "make directory" and it creates a new directory within the current directory. It is possible to create multiple directories by separating them with a space. Furthermore, it is possible to create directories with all their parent directories by using the -p tag and separating them by '/'.
+
+ls: This command displays a list of contents for the current directory. One interesting thing is that if you add the -a tag it includes directories starting with '.', including the '..' directory. This is interesting because I never knew .. was an actual directory that is just not visible unless requested.
