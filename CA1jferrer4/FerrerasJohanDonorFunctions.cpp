@@ -44,19 +44,27 @@ void Donor::add(){
     
 }
 
-void Donor::manage{
+void Donor::manage(){
     add();
 }
 
-void Donor::view{
+void Donor::view(){
     cout << "Donor Info\n" << first << " " << last << ": age " << age << "\n" << street_num;
-    cout << " " << street_name << "\n" << town << ", NY " << zip_code << ;
-    std::printf( "\nCurrent Amount Donated: $%.2f", donated);
-    cout << "\n\n"
+    cout << " " << street_name << "\n" << town << ", NY " << zip_code;
+    std::printf( "\nCurrent Amount Donated: $%.2f \n\n", donated);
+}
+    
+void Donor::donate(){
+    float d;
+    cout << "Enter Amount to Donate: ";
+    cin >> d;
+    std::printf("\n$%.2f donated.\n\n", d);
+    donated += d;
 }
 
-
-
+void Donor::total(){
+    printf("$%.2f", donated);
+}
 
 
 

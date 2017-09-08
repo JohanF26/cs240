@@ -13,7 +13,6 @@ class Donor{
 		void view();
 		void donate();
 		void total();
-		void quit();
     
 	private:
 		string last;
@@ -25,4 +24,4 @@ class Donor{
 		string zip_code;
 		float donated;
 
-}
+};
