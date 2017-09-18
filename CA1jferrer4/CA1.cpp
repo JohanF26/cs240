@@ -10,11 +10,13 @@ int main(int argc, char *argv[]){
     string com;
     Donor *donor_ptr = new Donor();
     while(continue_program){
-        cout << "Enter a command.\nChoose from [\"Add\" \"Manage\" \"View\" \"Donate\" \"Total\" \"Quit\"]\n";
+        cout << "\nEnter a command.\nChoose from [\"Add\" \"Manage\" \"View\" \"Donate\" \"Total\" \"Quit\"]\n";
+        cout << ": ";
         cin >> com;
         if(com == "Quit"){
             continue_program = false;
         } else if(com == "Add"){
+        	donor_ptr = new Donor();
             donor_ptr->add();
         } else if(com == "Manage"){
             donor_ptr->manage();
