@@ -18,16 +18,23 @@ Donor::Donor(){
 }
 
 Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc){
+	bool validInputs = true;
   if(isalpha(l_name)){
     last = l_name;
+  } else {
+  	validInputs = false;
   }
 
   if(isalpha(f_name)){
     first = f_name;
+  } else {
+  	validInputs = false;
   }
 
   if(isalnum(u_ID) && u_ID.length() >= 5 && u_ID.length() <= 10){
     userid = u_ID;
+  } else {
+  	validInputs = false;
   }
 
   if(p_word.length() >= 6){
@@ -43,15 +50,23 @@ Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, in
     }
     if(has_digit && has_nonalnum){
       password = p_word;
-    }
+    } else {
+  		validInputs = false;
+  	}
+  } else {
+  	validInputs = false;
   }
 
   if(a >= 18){
     age = a;
+  } else {
+  	validInputs = false;
   }
 
   if(s_num > 0){
     house_num = s_num;
+  } else {
+  	validInputs = false;
   }
 
   //this  basically doesn't need any checking
@@ -60,14 +75,48 @@ Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, in
 
   if(s <= ME){
     state = s;
+  } else {
+  	validInputs = false;
   }
 
   if(z.length() == 5 && isdigit(z)){
     zip_code = zc;
+  } else {
+  	validInputs = false;
   }
 
   donated = 0.00;
+  
+  if(validInputs == false){
+  	cout << "One or more of your inputs is invalid, please try again";
+  }
 
+}
+
+void donorMenu(){
+	bool continue_program = true;
+	string com;
+	while(continue_program){
+		cout << "\nSuccessfully logged in as donor.\n Please enter a command.\nChoose from [\"Manage\" \"Passwd\" \"View\" \"Donate\" \"Total\" \"Logout\"]\n";
+		cout << ": ";
+		cin >> com;
+		if(com == "Logout"){
+			cout << "Logging out...";
+		  continue_program = false;
+		} else if(com == "Manage"){
+		  manage();
+		} else if(com == "Passwd"){
+		  password();
+		} else if(com == "View"){
+		  view();
+		} else if(com == "Donate"){
+		  donate();
+		} else if(com == "Total"){
+		  total();
+		} else{
+		  cout << "Command not recognized. Please try again.\n";
+		}
+	}
 }
 
 void Donor::manage(){
@@ -155,7 +204,50 @@ void Donor::manage(){
 }
 
 void Donor::password(){
+	string oldPW = "";
+	string newPW = "";
+	string newPW2 = "";
+	bool pwDontMatch = true;
+	cout << "Enter Old Password: ";
+	cin >> oldPW;
+	
+	if(oldPW == password){
+		while(pwDontMatch){
+			cout << "Enter New Password: ";
+			cin >> newPW;
+	
+			if(newPW.length() >= 6){
+				bool has_digit = false;
+				bool has_nonalnum = false;
 
+				for(int i = 0; i < newPW.length(); i++){
+				  if(isdigit(newPW[i])){
+					has_digit = true;
+				  } else if(isalnum(newPW[i]) == false){
+					has_nonalnum = true;
+				  }
+				}
+				if(has_digit && has_nonalnum){
+					cout << "Enter new password again: ";
+					cinn >> newPW2;
+					if(newPW == newPW2){
+						password = newPW;
+						pwDontMatch = false;
+				  		cout << "Password successfully updated.";
+					} else {
+						cout << "Passwords do not match";
+					}
+				  
+				}
+				else {
+					cout << "Invalid password format. Password was not updated, please try again.";
+				}
+			}
+		}
+	} else {
+		cout << "Incorrect password.";
+	}
+		
 }
 
 
@@ -169,10 +261,37 @@ void Donor::donate(){
     float d;
     cout << "\nEnter Amount to Donate: ";
     cin >> d;
-    std::printf("$%.2f donated.\n", d);
-    donated += d;
+    if(d + donated > 5000){
+    	cout << "Donated total exceeds $5000.00";
+    } else if(d < 0){
+    	cout << "Cannot donate negative amount";
+    } else {
+    	std::printf("$%.2f donated.\n", d);
+    	donated += d;
+    }
 }
 
 void Donor::total(){
     printf(" $%.2f\n", donated);
 }
+
+string getID(){
+	return userid;
+}
+
+string getPW(){
+	return pw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

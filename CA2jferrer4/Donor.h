@@ -8,12 +8,15 @@ class Donor{
 	public:
     Donor();
 		Donor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc);
-
+	
+		void donorMenu();
 		void manage();
 		void password();
 		void view();
 		void donate();
 		void total();
+		string getID();
+		string getPW();
 
 	private:
 		enum State {NY, PA, RI, NH, VT, MA, CT, ME};
