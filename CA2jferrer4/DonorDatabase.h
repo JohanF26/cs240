@@ -15,7 +15,9 @@ class DonorDatabase{
 		void load();
 		void report();
 		void quit();
-
+	
+	Donor[] getDonorList();
+	
 	private:
 		Donor donorList[1000];
 		int maximumSize;

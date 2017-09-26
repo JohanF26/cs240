@@ -12,12 +12,26 @@ void DonorDatabase::DonorDatabase(int dbSize){
 void DonorDatabase::login(){
 	string uID = "";
 	string pWord = "";
-
+	
 	cout << "Username: ";
 	cin >> uID;
 
 	cout << "Password: ";
 	cin >> pWord;
+	
+	for(int i = 0; i < donorsInBase; i++){
+		Donor* tempDon = &donorList[i];
+		if(uID == tempDon->getID()){
+			if(pWord == tempDon->getPW()){
+				tempDon->donorMenu();
+				break;
+			} else{
+				cout << "Incorrect password.";
+			}
+		} else{
+			cout << "Username does not exist.";
+		}
+	}
 
 }
 
