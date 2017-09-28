@@ -20,7 +20,7 @@ Donor::Donor(){
 
 }
 
-Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc){
+void Donor::setDonor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc){
 	validInputs = true;
 
 	bool validLast = true;
