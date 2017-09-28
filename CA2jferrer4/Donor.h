@@ -25,10 +25,10 @@ class Donor{
 		bool validInputs;
 
 	public:
-		
-		void setDonor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc);
-    	Donor();
 
+		Donor();
+		void setDonor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc);
+    
 		void donorMenu();
 		void manage();
 		void password();

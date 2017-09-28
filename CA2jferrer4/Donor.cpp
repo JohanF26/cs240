@@ -6,9 +6,23 @@
 
 using namespace std;
 
+Donor::Donor(){
+  string last = "";
+  string first = "";
+  string userid = "";
+  string pw = "";
+  int age = 0;
+  int house_num = 0;
+  string street_name = "";
+  string town = "";
+  State state = NY;
+  string zip_code = "";
+
+}
+
 Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc){
 	validInputs = true;
-	
+
 	bool validLast = true;
 	for(int i = 0; i < l_name.length(); i++){
 		if(!isalpha(l_name[i])){
@@ -21,7 +35,7 @@ Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, in
 	} else {
 		validInputs = false;
 	}
-  
+
 	bool validFirst = true;
 	for(int i = 0; i < f_name.length(); i++){
 		if(!isalpha(f_name[i])){
@@ -89,7 +103,7 @@ Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, in
   } else {
   	validInputs = false;
   }
-	
+
 	bool validZIP = true;
 	for(int i = 0; i < zc.length(); i++){
 		if(!isdigit(zc[i])){
@@ -158,7 +172,7 @@ void Donor::manage(){
 		if(choice == 1){
 			cout << "Last Name: ";
 			cin >> l_name;
-		
+
 			bool validLast = true;
 			for(int i = 0; i < l_name.length(); i++){
 				if(!isalpha(l_name[i])){
@@ -173,7 +187,7 @@ void Donor::manage(){
 		} else if(choice == 2){
 			cout << "First Name: ";
 			cin >> f_name;
-			
+
 			bool validFirst = true;
 			for(int i = 0; i < f_name.length(); i++){
 				if(!isalpha(f_name[i])){
@@ -240,7 +254,7 @@ void Donor::manage(){
 		} else if(choice == 8){
 			cout << "Zip Code: ";
     	cin >> zc;
-		
+
 		bool validZIP = true;
 		for(int i = 0; i < zc.length(); i++){
 			if(!isdigit(zc[i])){
@@ -343,7 +357,33 @@ void Donor::setDonated(float d){
   donated = d;
 }
 
-
+string getLast(){
+  return last;
+}
+string getFirst(){
+  return first;
+}
+int getAge(){
+  return age;
+}
+int getHouse(){
+  return house_num;
+}
+string getStreet(){
+  return street_name;
+}
+string getTown(){
+  return town;
+}
+State getState(){
+  return state;
+}
+string getZip(){
+  return zip_code;
+}
+float getDonated(){
+  return donated;
+}
 bool Donor::getValidInput(){
   return validInputs;
 }
