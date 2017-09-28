@@ -4,6 +4,9 @@
 #include "Donor.h"
 #include <fstream>
 #include <ctype.h>
+#include "state.h"
+
+using namespace std;
 
 DonorDatabase::DonorDatabase(int dbSize){
 	maximumSize = dbSize;
@@ -47,13 +50,19 @@ void DonorDatabase::add(){
 	int house_num;
 	string street_name;
 	string town;
+	string st;
 	State state;
 	string zip_code;
 	float donated;
 
 	Donor *donor_ptr = new Donor();
+	
+	if(donorsInBase == maximumSize){
+		cout << "Limit of donors has been reached";
+		return;
+	}
 
-	while(!donor_ptr.getValidInput()){
+	while(!donor_ptr->getValidInput()){
 		cout << "Last Name: ";
 	  cin >> last;
 
@@ -79,21 +88,40 @@ void DonorDatabase::add(){
 	  cin >> town;
 
 		cout << "State: ";
-		cin >> state;
+		cin >> st;
+		if(st == "NY" || st == "PA" || st == "RI" || st == "NH" || st == "VT" || st == "MA" || st == "CT" || st == "ME"){
+        if(st == "NY"){
+        	state = NY;
+        } else if(st == "PA"){
+        	state = PA;
+        } else if(st == "RI"){
+        	state = RI;
+        } else if(st == "NH"){
+        	state = NH;
+        } else if(st == "VT"){
+        	state = VT;
+        } else if(st == "MA"){
+        	state = MA;
+        } else if(st == "CT"){
+        	state = CT;
+        } else{
+        	state = ME;
+        }
+      }
 
 	  cout << "Zip Code: ";
 	  cin >> zip_code;
 
 		for(int i = 0; i < donorsInBase; i++){
 			if(donorList[i].getID() == userid){
-				cout << "User ID is taken, try choosing a new one.\n"
+				cout << "User ID is taken, try choosing a new one.\n";
 				i = 0;
 				cout << "User ID: ";
 				cin >> userid;
 			}
 		}
 
-		donor_ptr = new Donor(last, first, userid, pw, age, house_num, street_name, town, state, zip_code);
+		donor_ptr->setDonor(last, first, userid, pw, age, house_num, street_name, town, state, zip_code);
 	}
 
 	donorList[donorsInBase] = *donor_ptr;
@@ -104,13 +132,13 @@ void DonorDatabase::add(){
 
 void DonorDatabase::save(string outputFile){
 	ofstream tempFile;
-	file.open(outputFile, ios::out);
+	tempFile.open(outputFile, ios::out);
 	if(tempFile.is_open()){
 		cout << "A file with this name already exists. Enter 'Y' to override this file";
 		string choice;
 		cin >> choice;
 		if(choice == "Y"){
-			string tempLast
+			string tempLast;
 			string tempFirst;
 			string tempID;
 			string tempPW;
@@ -135,7 +163,7 @@ void DonorDatabase::save(string outputFile){
 				tempDonated = donorList[i].getDonated();
 
 				tempFile << i << endl;
-				tempFile << tempLast << end1;
+				tempFile << tempLast << endl;
 				tempFile << tempFirst << endl;
 				tempFile << tempID << endl;
 				tempFile << tempPW << endl;
@@ -150,7 +178,7 @@ void DonorDatabase::save(string outputFile){
 			}
 			cout << "File was overriden.";
 		} else {
-			cout << "File was not modified."
+			cout << "File was not modified.";
 		}
 		tempFile.close();
 	} else {
@@ -161,7 +189,7 @@ void DonorDatabase::save(string outputFile){
 void DonorDatabase::load(string inputFile){
 	ifstream tempFile(inputFile);
 	if(tempFile.is_open()){
-		string tempLast
+		string tempLast;
 		string tempFirst;
 		string tempID;
 		string tempPW;
@@ -169,51 +197,72 @@ void DonorDatabase::load(string inputFile){
 		int tempHouse;
 		string tempStreet;
 		string tempTown;
+		string tempSt;
 		State tempState;
 		string tempZip;
 		float tempDonated;
 
 		string currentLine;
-		while(getLine(tempFile, currentLine)){
+		while(getline(tempFile, currentLine)){
 			int positionOnList = stoi(currentLine);
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempLast = currentLine;
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempFirst = currentLine;
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempID = currentLine;
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempPW = currentLine;
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempAge = stoi(currentLine);
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempHouse = stoi(currentLine);
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempStreet = currentLine;
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempTown = currentLine;
 
-			getLine(tempFile, currentLine);
-			tempState = currentLine;
+			getline(tempFile, currentLine);
+			tempSt = currentLine;
+			if(tempSt == "NY" || tempSt == "PA" || tempSt == "RI" || tempSt == "NH" || tempSt == "VT" || tempSt == "MA" || tempSt == "CT" || tempSt == "ME"){
+		    if(tempSt == "NY"){
+		    	tempState = NY;
+		    } else if(tempSt == "PA"){
+		    	tempState = PA;
+		    } else if(tempSt == "RI"){
+		    	tempState = RI;
+		    } else if(tempSt == "NH"){
+		    	tempState = NH;
+		    } else if(tempSt == "VT"){
+		    	tempState = VT;
+		    } else if(tempSt == "MA"){
+		    	tempState = MA;
+		    } else if(tempSt == "CT"){
+		    	tempState = CT;
+		    } else{
+		    	tempState = ME;
+		    }
+		  }
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempZip = currentLine;
 
-			getLine(tempFile, currentLine);
+			getline(tempFile, currentLine);
 			tempDonated = stof(currentLine);
+			
+			Donor *tempDonor = new Donor();
+			tempDonor->setDonor(tempLast, tempFirst, tempID, tempPW, tempAge, tempHouse, tempStreet, tempTown, tempState, tempZip);
+			tempDonor->setDonated(tempDonated);
 
-			Donor *tempDonor = new Donor(tempLast, tempFirst, tempID, tempPW, tempAge, tempHouse, tempStreet, tempTown, tempState, tempZip);
-			tempDonor.setDonated(tempDonated);
-
-			donorList[positionOnList] = tempDonor;
+			donorList[positionOnList] = *tempDonor;
 			donorsInBase++;
 		}
 		tempFile.close();
@@ -226,7 +275,7 @@ void DonorDatabase::report(){
 	float donationReport = 0;
 	cout << donorsInBase << " donors currently in database.\n";
 	for(int i = 0; i < maximumSize; i++){
-		donationReport += donorList[i]->total();
+		donationReport += donorList[i].total();
 	}
 	printf("A total of $%.2f has been donated.\n", donationReport);
 }

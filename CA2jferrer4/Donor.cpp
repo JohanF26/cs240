@@ -1,46 +1,52 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Donor.h"
-#include "DonorDatabase.h"
+#include "string"
+#include "state.h"
 
-Donor::Donor(){
-  last = "";
-	first = "";
-	pw = "";
-	age = -1;
-	house_num = 0;
-  street_name = "";
-	town = "";
-	state = NY;
-	zip_code = "xxxxx";
-	donated = 0.00;
-  validInputs = false;
-
-}
-
-bool Donor::getValidInput(){
-  return validInputs;
-}
+using namespace std;
 
 Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc){
 	validInputs = true;
-  if(isalpha(l_name)){
-    last = l_name;
-  } else {
-  	validInputs = false;
-  }
+	
+	bool validLast = true;
+	for(int i = 0; i < l_name.length(); i++){
+		if(!isalpha(l_name[i])){
+			validLast = false;
+			break;
+		}
+	}
+	if(validLast){
+		last = l_name;
+	} else {
+		validInputs = false;
+	}
+  
+	bool validFirst = true;
+	for(int i = 0; i < f_name.length(); i++){
+		if(!isalpha(f_name[i])){
+			validFirst = false;
+			break;
+		}
+	}
+	if(validFirst){
+		first = f_name;
+	} else {
+		validInputs = false;
+	}
 
-  if(isalpha(f_name)){
-    first = f_name;
-  } else {
-  	validInputs = false;
-  }
-
-  if(isalnum(u_ID) && u_ID.length() >= 5 && u_ID.length() <= 10){
-    userid = u_ID;
-  } else {
-  	validInputs = false;
-  }
+	bool validID = true;
+	for(int i = 0; i < u_ID.length(); i++){
+		if(!isalnum(u_ID[i])){
+			validID = false;
+			break;
+		}
+	}
+	if(validID && u_ID.length() >= 5 && u_ID.length() <= 10){
+		userid = u_ID;
+	} else {
+		validInputs = false;
+	}
 
   if(p_word.length() >= 6){
     bool has_digit = false;
@@ -54,7 +60,7 @@ Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, in
       }
     }
     if(has_digit && has_nonalnum){
-      password = p_word;
+      pw = p_word;
     } else {
   		validInputs = false;
   	}
@@ -83,12 +89,19 @@ Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, in
   } else {
   	validInputs = false;
   }
-
-  if(z.length() == 5 && isdigit(z)){
-    zip_code = zc;
-  } else {
-  	validInputs = false;
-  }
+	
+	bool validZIP = true;
+	for(int i = 0; i < zc.length(); i++){
+		if(!isdigit(zc[i])){
+			validZIP = false;
+			break;
+		}
+	}
+	if(zc.length() == 5 && validZIP){
+		zip_code = zc;
+	} else {
+		validInputs = false;
+	}
 
   donated = 0.00;
 
@@ -134,7 +147,7 @@ void Donor::manage(){
   int s_num;
   string s_name;
   string t;
-  State s;
+  string s;
   string zc;
 
 	while(choice != 9){
@@ -144,21 +157,34 @@ void Donor::manage(){
 
 		if(choice == 1){
 			cout << "Last Name: ";
-    	cin >> l_name;
-
-      if(isalpha(l_name)){
-        last = l_name;
-        cout << "Last name was succesfully updated."
-      }
-
+			cin >> l_name;
+		
+			bool validLast = true;
+			for(int i = 0; i < l_name.length(); i++){
+				if(!isalpha(l_name[i])){
+					validLast = false;
+					break;
+				}
+			}
+			if(validLast){
+				last = l_name;
+				cout << "Last name was succesfully updated.";
+			}
 		} else if(choice == 2){
 			cout << "First Name: ";
-    	cin >> f_name;
-
-      if(isalpha(f_name)){
-        first = f_name;
-        cout << "First name was succesfully updated."
-      }
+			cin >> f_name;
+			
+			bool validFirst = true;
+			for(int i = 0; i < f_name.length(); i++){
+				if(!isalpha(f_name[i])){
+					validFirst = false;
+					break;
+				}
+			}
+			if(validFirst){
+				first = f_name;
+				cout << "First name was succesfully updated.";
+			}
 
 		} else if(choice == 3){
 			cout << "Age: ";
@@ -166,7 +192,7 @@ void Donor::manage(){
 
       if(a >= 18){
         age = a;
-        cout << "Age was succesfully updated."
+        cout << "Age was succesfully updated.";
       }
 
 		} else if(choice == 4){
@@ -175,34 +201,57 @@ void Donor::manage(){
 
       if(s_num > 0){
         house_num = s_num;
-        cout << "House number was succesfully updated."
+        cout << "House number was succesfully updated.";
       }
 
 		} else if(choice == 5){
 			cout << "Street Name: ";
     	cin >> street_name;
-      cout << "Street name was succesfully updated."
+      cout << "Street name was succesfully updated.";
 		} else if(choice == 6){
 			cout << "Town: ";
     	cin >> town;
-      cout << "Town was succesfully updated"
+      cout << "Town was succesfully updated";
 		} else if(choice == 7){
 			cout << "State: ";
 			cin >> s;
 
-      if(s <= ME){
-        state = s;
-        cout << "State was succesfully updated."
+      if(s == "NY" || s == "PA" || s == "RI" || s == "NH" || s == "VT" || s == "MA" || s == "CT" || s == "ME"){
+        if(s == "NY"){
+        	state = NY;
+        } else if(s == "PA"){
+        	state = PA;
+        } else if(s == "RI"){
+        	state = RI;
+        } else if(s == "NH"){
+        	state = NH;
+        } else if(s == "VT"){
+        	state = VT;
+        } else if(s == "MA"){
+        	state = MA;
+        } else if(s == "CT"){
+        	state = CT;
+        } else{
+        	state = ME;
+        }
+        cout << "State was succesfully updated.";
       }
 
 		} else if(choice == 8){
 			cout << "Zip Code: ";
     	cin >> zc;
-
-      if(z.length() == 5 && isdigit(z)){
-        zip_code = zc;
-        cout << "Zip code was succesfully updated."
-      }
+		
+		bool validZIP = true;
+		for(int i = 0; i < zc.length(); i++){
+			if(!isdigit(zc[i])){
+				validZIP = false;
+				break;
+			}
+		}
+		if(zc.length() == 5 && validZIP){
+			zip_code = zc;
+			cout << "Zip code was succesfully updated.";
+		}
 
 		}
 	}
@@ -216,7 +265,7 @@ void Donor::password(){
 	cout << "Enter Old Password: ";
 	cin >> oldPW;
 
-	if(oldPW == password){
+	if(oldPW == pw){
 		while(pwDontMatch){
 			cout << "Enter New Password: ";
 			cin >> newPW;
@@ -234,9 +283,9 @@ void Donor::password(){
 				}
 				if(has_digit && has_nonalnum){
 					cout << "Enter new password again: ";
-					cinn >> newPW2;
+					cin >> newPW2;
 					if(newPW == newPW2){
-						password = newPW;
+						pw = newPW;
 						pwDontMatch = false;
 				  		cout << "Password successfully updated.";
 					} else {
@@ -276,9 +325,10 @@ void Donor::donate(){
     }
 }
 
-void Donor::total(){
+float Donor::total(){
   cout << last;
   printf(" $%.2f\n", donated);
+  return(donated);
 }
 
 string Donor::getID(){
@@ -291,4 +341,9 @@ string Donor::getPW(){
 
 void Donor::setDonated(float d){
   donated = d;
+}
+
+
+bool Donor::getValidInput(){
+  return validInputs;
 }

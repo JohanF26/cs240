@@ -2,20 +2,27 @@
 #include <stdlib.h>
 #include "Donor.h"
 #include "DonorDatabase.h"
-#include <string>
+#include <string.h>
 #include <fstream>
 
 using namespace std;
 
-void main(int argc, char *argv[]){
-  if(argc != 1 && argc <= 3 && isdigit(argv[1])){
+int main(int argc, char *argv[]){
+	bool numArg = true;
+	for(int i = 0; i < strlen(argv[1]); i++){
+  		if(!isdigit(argv[1][i])){
+  			numArg = false;
+  		}
+  	}
+  	
+  if(argc != 1 && argc <= 3 && numArg){
     //using command line arguments
     int maxSize = atoi(argv[1]);
 
     if(maxSize >= 1 && maxSize <= 1000){
       DonorDatabase *db_ptr = new DonorDatabase(maxSize);
 
-      if(argc == 3 && argv[2].substr(argv[2].length() - 4, 4) == ".txt"){
+      if(argc == 3){
         string inputFile = argv[2];
         db_ptr->load(inputFile);
       }
