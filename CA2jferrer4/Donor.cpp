@@ -14,11 +14,16 @@ Donor::Donor(){
 	state = NY;
 	zip_code = "xxxxx";
 	donated = 0.00;
+  validInputs = false;
 
 }
 
+bool Donor::getValidInput(){
+  return validInputs;
+}
+
 Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, int s_num, string s_name, string t, State s, string zc){
-	bool validInputs = true;
+	validInputs = true;
   if(isalpha(l_name)){
     last = l_name;
   } else {
@@ -86,14 +91,14 @@ Donor::Donor(string l_name, string f_name, string u_ID, string p_word, int a, in
   }
 
   donated = 0.00;
-  
+
   if(validInputs == false){
   	cout << "One or more of your inputs is invalid, please try again";
   }
 
 }
 
-void donorMenu(){
+void Donor::donorMenu(){
 	bool continue_program = true;
 	string com;
 	while(continue_program){
@@ -210,12 +215,12 @@ void Donor::password(){
 	bool pwDontMatch = true;
 	cout << "Enter Old Password: ";
 	cin >> oldPW;
-	
+
 	if(oldPW == password){
 		while(pwDontMatch){
 			cout << "Enter New Password: ";
 			cin >> newPW;
-	
+
 			if(newPW.length() >= 6){
 				bool has_digit = false;
 				bool has_nonalnum = false;
@@ -237,7 +242,7 @@ void Donor::password(){
 					} else {
 						cout << "Passwords do not match";
 					}
-				  
+
 				}
 				else {
 					cout << "Invalid password format. Password was not updated, please try again.";
@@ -247,7 +252,7 @@ void Donor::password(){
 	} else {
 		cout << "Incorrect password.";
 	}
-		
+
 }
 
 
@@ -261,7 +266,7 @@ void Donor::donate(){
     float d;
     cout << "\nEnter Amount to Donate: ";
     cin >> d;
-    if(d + donated > 5000){
+    if((d + donated) > 5000){
     	cout << "Donated total exceeds $5000.00";
     } else if(d < 0){
     	cout << "Cannot donate negative amount";
@@ -272,26 +277,18 @@ void Donor::donate(){
 }
 
 void Donor::total(){
-    printf(" $%.2f\n", donated);
+  cout << last;
+  printf(" $%.2f\n", donated);
 }
 
-string getID(){
+string Donor::getID(){
 	return userid;
 }
 
-string getPW(){
+string Donor::getPW(){
 	return pw;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+void Donor::setDonated(float d){
+  donated = d;
+}

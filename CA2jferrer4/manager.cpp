@@ -2,57 +2,61 @@
 #include <stdlib.h>
 #include "Donor.h"
 #include "DonorDatabase.h"
-#include "string"
+#include <string>
+#include <fstream>
 
 using namespace std;
 
 void main(int argc, char *argv[]){
-  if(argc != 1 && argc <= 3 && isdigit(argv[2])){
+  if(argc != 1 && argc <= 3 && isdigit(argv[1])){
     //using command line arguments
-    int maxSize = atoi(argv[2]);
+    int maxSize = atoi(argv[1]);
 
     if(maxSize >= 1 && maxSize <= 1000){
       DonorDatabase *db_ptr = new DonorDatabase(maxSize);
 
-      if(argc == 3 && argv[3].substr(argv[3].length() - 4, 4) == ".txt"){
-
+      if(argc == 3 && argv[2].substr(argv[2].length() - 4, 4) == ".txt"){
+        string inputFile = argv[2];
+        db_ptr->load(inputFile);
       }
 
       //main menu
       bool continue_program = true;
-      string com;
+      string com = "";
+      string outputFile = "";
+      string inputFile = "";
       while(continue_program){
+        cout << "DONOR DATABASE\n";
         cout << "\nEnter a command.\nChoose from [\"Login\" \"Add\" \"Save\" \"Load\" \"Report\" \"Quit\"]\n";
         cout << ": ";
         cin >> com;
         if(com == "Quit"){
-          db_ptr->quit();
+          cout << "Quitting program";
           continue_program = false;
         } else if(com == "Login"){
           db_ptr->login();
         } else if(com == "Add"){
           db_ptr->add();
         } else if(com == "Save"){
-          db_ptr->save();
+          cout << "What is the name of the file you would like to save to?";
+          cin >> outputFile;
+          db_ptr->save(outputFile);
         } else if(com == "Load"){
-          db_ptr->load();
+          cout << "What is the name of the file you would like to load from?";
+          cin >> inputFile;
+          db_ptr->load(inputFile);
         } else if(com == "Report"){
           db_ptr->report();
         } else{
           cout << "Command not recognized. Please try again.\n";
         }
       }
+    } else {
+      cout << "Size of donor database should be between 1 and 1000 donors.";
     }
+  } else {
+    cout << "Invalid number of arguments or one of the arguments is an invalid type, try again.";
   }
 
   return 0;
 }
-
-
-
-
-
-
-
-
-

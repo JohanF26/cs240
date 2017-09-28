@@ -11,15 +11,15 @@ class DonorDatabase{
 
     void login();
 		void add();
-		void save();
-		void load();
+		void save(string outputFile);
+		void load(string inputFile);
 		void report();
-		void quit();
-	
+		bool usernameAvailable();
+
 	Donor[] getDonorList();
-	
+
 	private:
-		Donor donorList[1000];
+		Donor* donorList;
 		int maximumSize;
 		int donorsInBase;
 		float totalDonated;
