@@ -220,11 +220,11 @@ void Donor::manage(){
 
 		} else if(choice == 5){
 			cout << "Street Name: ";
-    	cin >> street_name;
+    	getline(cin, street_name);
       cout << "Street name was succesfully updated.";
 		} else if(choice == 6){
 			cout << "Town: ";
-    	cin >> town;
+    	getline(cin, town);
       cout << "Town was succesfully updated";
 		} else if(choice == 7){
 			cout << "State: ";

@@ -56,7 +56,7 @@ void DonorDatabase::add(){
 	float donated;
 
 	Donor *donor_ptr = new Donor();
-	
+
 	if(donorsInBase == maximumSize){
 		cout << "Limit of donors has been reached";
 		return;
@@ -82,10 +82,10 @@ void DonorDatabase::add(){
 	  cin >> house_num;
 
 	  cout << "Street Name: ";
-	  cin >> street_name;
+	  getline(cin, street_name);
 
 	  cout << "Town: ";
-	  cin >> town;
+	  getline(cin, town);
 
 		cout << "State: ";
 		cin >> st;
@@ -257,7 +257,7 @@ void DonorDatabase::load(string inputFile){
 
 			getline(tempFile, currentLine);
 			tempDonated = stof(currentLine);
-			
+
 			Donor *tempDonor = new Donor();
 			tempDonor->setDonor(tempLast, tempFirst, tempID, tempPW, tempAge, tempHouse, tempStreet, tempTown, tempState, tempZip);
 			tempDonor->setDonated(tempDonated);
