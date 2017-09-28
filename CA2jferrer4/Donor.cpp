@@ -357,31 +357,31 @@ void Donor::setDonated(float d){
   donated = d;
 }
 
-string getLast(){
+string Donor::getLast(){
   return last;
 }
-string getFirst(){
+string Donor::getFirst(){
   return first;
 }
-int getAge(){
+int Donor::getAge(){
   return age;
 }
-int getHouse(){
+int Donor::getHouse(){
   return house_num;
 }
-string getStreet(){
+string Donor::getStreet(){
   return street_name;
 }
-string getTown(){
+string Donor::getTown(){
   return town;
 }
-State getState(){
+State Donor::getState(){
   return state;
 }
-string getZip(){
+string Donor::getZip(){
   return zip_code;
 }
-float getDonated(){
+float Donor::getDonated(){
   return donated;
 }
 bool Donor::getValidInput(){
