@@ -204,8 +204,12 @@ void DonorDatabase::load(string inputFile){
 		float tempDonated;
 
 		string currentLine;
+		int donorsInFile = 0;
 		while(getline(tempFile, currentLine)){
 			int positionOnList = stoi(currentLine);
+			if(positionOnList > donorsInFile){
+				donorsInFile = positionOnList;
+			}
 
 			getline(tempFile, currentLine);
 			tempLast = currentLine;
@@ -264,8 +268,8 @@ void DonorDatabase::load(string inputFile){
 			tempDonor->setDonated(tempDonated);
 
 			donorList[positionOnList] = *tempDonor;
-			donorsInBase++;
 		}
+		donorsInBase += donorsInFile;
 		tempFile.close();
 	} else{
 		cout << "Incorrect file. Make sure it is a .txt file.";
