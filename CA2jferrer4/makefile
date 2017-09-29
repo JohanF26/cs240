@@ -13,4 +13,4 @@ manager.o: manager.cpp
 			g++ -c manager.cpp
 
 clean:
-			rm -f *.o Donation
+			rm -f *.o Donor
