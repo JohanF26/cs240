@@ -80,7 +80,7 @@ void DonorDatabase::add(){
 
 	  cout << "House Number: ";
 		cin(1000, '\n');
-	  getline(cin, house_num);
+	  getline(cin, atoi(house_num));
 
 	  cout << "Street Name: ";
 	  getline(cin, street_name);
