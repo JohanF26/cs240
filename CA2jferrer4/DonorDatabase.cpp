@@ -79,7 +79,7 @@ void DonorDatabase::add(){
 	  cin >> age;
 
 	  cout << "House Number: ";
-	  cin >> house_num;
+	  getline(cin, house_num);
 
 	  cout << "Street Name: ";
 	  getline(cin, street_name);
