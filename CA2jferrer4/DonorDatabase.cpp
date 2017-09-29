@@ -275,7 +275,7 @@ void DonorDatabase::load(string inputFile){
 void DonorDatabase::report(){
 	float donationReport = 0;
 	cout << donorsInBase << " donors currently in database.\n";
-	for(int i = 0; i < maximumSize; i++){
+	for(int i = 0; i < donorsInBase; i++){
 		donationReport += donorList[i].total();
 	}
 	printf("A total of $%.2f has been donated.\n", donationReport);
