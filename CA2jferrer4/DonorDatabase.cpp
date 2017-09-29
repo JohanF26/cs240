@@ -82,7 +82,7 @@ void DonorDatabase::add(){
 	  cin >> house_num;
 
 	  cout << "Street Name: ";
-		cin(1000, '\n');
+		cin.ignore(1000, '\n');
 	  getline(cin, street_name);
 
 	  cout << "Town: ";
