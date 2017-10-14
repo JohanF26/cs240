@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include "string"
+#ifndef FBLUSER_H
+#define FBLUSER_H
 
 using namespace std;
 
@@ -11,9 +13,11 @@ class FBLUser {
 		string password;
 		string first;
 		string last;
-		
-		LinkedList 
-	
+
+
+
 	public:
 
-}
+};
+
+#endif

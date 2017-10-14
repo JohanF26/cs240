@@ -5,8 +5,6 @@
 using namespace std;
 
 class FBLPostLL{
-	public:
-		FBLPost post;
-		Node *next;
+	
 
-}
+};
