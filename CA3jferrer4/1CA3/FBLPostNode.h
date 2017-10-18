@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "string"
 #include "FBLPost.h"
+#ifndef FBLPOSTNODE_H
+#define FBLPOSTNODE_H
 
 using namespace std;
 
@@ -21,3 +23,5 @@ class FBLPostNode{
     void setNextPost(FBLPostNode* fblpn);
 
 };
+
+#endif

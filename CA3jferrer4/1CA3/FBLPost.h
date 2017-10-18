@@ -7,7 +7,15 @@
 using namespace std;
 
 class FBLPost{
+  private:
+    string post;
 
+  public:
+    FBLPost();
+    FBLPost(string p);
+
+    string getPost();
+    void setPost(string p);
 
 };
 
