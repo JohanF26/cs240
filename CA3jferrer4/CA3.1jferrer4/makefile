@@ -30,5 +30,5 @@ clean:
 
 compress: clean
 				cd ..
-				tar -cvvf Ferreras_Johan_jferrer4_CA3.tar CA3.1jferrer4
+				tar -cvvf Ferreras_Johan_jferrer4_CA3.tar CA3jferrer4
 				gzip Ferreras_Johan_jferrer4_CA3.tar
