@@ -42,7 +42,7 @@ void FBLPostLL::readPost(){
   } else if(head->getNextPost() == nullptr){
     //if head is not nullptr then we just need to make sure next post is nullptr
     //print out post and make it a nullptr
-    cout << "Post: " << head->getPost()->getPost() << "\n---------------" << endl;
+    cout << "Post:" << head->getPost()->getPost() << "\n---------------" << endl;
     head = nullptr;
   } else {
     //otherwise iterate through list to get last post
