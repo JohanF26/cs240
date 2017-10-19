@@ -1,9 +1,8 @@
-OBJECT = Driver.o FBLPost.o FBLPostLL.o FBLPostNode.o FBLUser.o FBLUserLL.o FBLUserNode.o
 
 all: FBLite
 
-FBLite: $(OBJECT)
-				g++ $(OBJECT) -o FBLite
+FBLite: Driver.o FBLPost.o FBLPostLL.o FBLPostNode.o FBLUser.o FBLUserLL.o FBLUserNode.o
+				g++ Driver.o FBLPost.o FBLPostLL.o FBLPostNode.o FBLUser.o FBLUserLL.o FBLUserNode.o -o FBLite
 
 Driver.o: Driver.cpp
 				g++ -c Driver.cpp
