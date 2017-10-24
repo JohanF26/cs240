@@ -29,5 +29,5 @@ clean:
 				rm -f *.o FBLite
 
 compress: clean
-				tar -cvvf Ferreras_Johan_jferrer4_CA3.tar
+				tar -cvvf Ferreras_Johan_jferrer4_CA3.tar *.*
 				gzip Ferreras_Johan_jferrer4_CA3.tar
