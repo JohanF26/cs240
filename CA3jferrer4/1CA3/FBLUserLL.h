@@ -1,9 +1,9 @@
+#ifndef FBLUSERLL_H
+#define FBLUSERLL_H
 #include <iostream>
 #include <stdlib.h>
 #include "string"
 #include "FBLUserNode.h"
-#ifndef FBLUSERLL_H
-#define FBLUSERLL_H
 
 using namespace std;
 

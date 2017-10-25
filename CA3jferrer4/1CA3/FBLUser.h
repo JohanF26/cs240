@@ -1,10 +1,10 @@
+#ifndef FBLUSER_H
+#define FBLUSER_H
 #include <iostream>
 #include <stdlib.h>
 #include "string"
 #include "FBLPostLL.h"
 #include "vector"
-#ifndef FBLUSER_H
-#define FBLUSER_H
 
 using namespace std;
 
@@ -47,7 +47,7 @@ class FBLUser {
 		void printFeed();
 
 		//Wall functions
-		void befriend(string userID);
+		void befriend(string id);
 		void printFriends();
 
 };

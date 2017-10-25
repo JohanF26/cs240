@@ -83,7 +83,7 @@ FBLPostLL* FBLUser::getFeed(){
 void FBLUser::befriend(string id){
   if(id != userID){
     string currID;
-    for(int i = 0; i < userFriends.size(); i++){}
+
   } else{
     cout << "You cannot befriend yourself. Try again with a different user ID." << endl;
   }

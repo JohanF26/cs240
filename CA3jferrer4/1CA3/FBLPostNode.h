@@ -1,9 +1,9 @@
+#ifndef FBLPOSTNODE_H
+#define FBLPOSTNODE_H
 #include <iostream>
 #include <stdlib.h>
 #include "string"
 #include "FBLPost.h"
-#ifndef FBLPOSTNODE_H
-#define FBLPOSTNODE_H
 
 using namespace std;
 

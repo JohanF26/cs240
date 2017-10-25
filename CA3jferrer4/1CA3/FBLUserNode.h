@@ -1,9 +1,9 @@
+#ifndef FBLUSERNODE_H
+#define FBLUSERNODE_H
 #include <iostream>
 #include <stdlib.h>
 #include "string"
-//#include "FBLUser.h"
-#ifndef FBLUSERNODE_H
-#define FBLUSERNODE_H
+#include "FBLUser.h"
 
 using namespace std;
 
