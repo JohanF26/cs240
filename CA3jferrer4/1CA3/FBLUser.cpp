@@ -11,7 +11,8 @@ FBLUser::FBLUser(){
   password = "";
   first = "";
   last = "";
-  postList = new FBLPostLL();
+  wall = new FBLPostLL();
+  feed = new FBLPostLL();
 
 }
 
@@ -20,7 +21,8 @@ FBLUser::FBLUser(string f, string l, string uID, string pw){
   password = pw;
   first = f;
   last = l;
-  postList = new FBLPostLL();
+  wall = new FBLPostLL();
+  feed = new FBLPostLL();
 
 }
 
@@ -67,10 +69,29 @@ void FBLUser::setLast(string l){
 
 }
 
-FBLPostLL* FBLUser::getPostList(){
-  return postList;
+//Wall functions
+FBLPostLL* FBLUser::getWall(){
+  return wall;
 }
 
+//Feed functions
+FBLPostLL* FBLUser::getFeed(){
+  return feed;
+}
+
+//Friend functions
+void FBLUser::befriend(string id){
+  if(id != userID){
+    string currID;
+    for(int i = 0; i < userFriends.size(); i++){}
+  } else{
+    cout << "You cannot befriend yourself. Try again with a different user ID." << endl;
+  }
+}
+
+void FBLUser::printFriends(){
+
+}
 
 
 ///Done 2

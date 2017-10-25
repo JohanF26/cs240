@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "string"
 #include "FBLPostLL.h"
+#include "vector"
 #ifndef FBLUSER_H
 #define FBLUSER_H
 
@@ -14,7 +15,12 @@ class FBLUser {
 		string password;
 		string first;
 		string last;
-		FBLPostLL* postList;
+		//user's posts
+		FBLPostLL* wall;
+		//friends posts
+		FBLPostLL* feed;
+
+		vector<FBLUser*> userFriends;
 
 	public:
 		FBLUser();
@@ -32,7 +38,17 @@ class FBLUser {
 		string getLast();
 		void setLast(string l);
 
-		FBLPostLL* getPostList();
+		//Wall functions
+		FBLPostLL* getWall();
+		void printWall();
+
+		//Feed fundtions
+		FBLPostLL* getFeed();
+		void printFeed();
+
+		//Wall functions
+		void befriend(string userID);
+		void printFriends();
 
 };
 

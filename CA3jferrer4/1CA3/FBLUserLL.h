@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "string"
 #include "FBLUserNode.h"
-#include "FBLPostLL.h"
+#ifndef FBLUSERLL_H
+#define FBLUSERLL_H
 
 using namespace std;
 
@@ -22,3 +23,5 @@ class FBLUserLL{
     bool isUnique(string uid);
 
 };
+
+#endif

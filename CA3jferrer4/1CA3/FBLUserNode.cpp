@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "string"
 #include "FBLUserNode.h"
-#include "FBLUser.h"
 
 using namespace std;
 

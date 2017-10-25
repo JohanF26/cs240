@@ -23,6 +23,7 @@ class FBLPostLL{
 
 		//read post and remove it from list
 		void readPost();
+		void printWall();
 
 };
 
