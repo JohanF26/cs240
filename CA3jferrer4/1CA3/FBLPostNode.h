@@ -16,6 +16,8 @@ class FBLPostNode{
     FBLPostNode();
     FBLPostNode(FBLPost* fblp);
 
+    ~FBLPostNode();
+
     FBLPost* getPost();
     void setPost(FBLPost* fblp);
 

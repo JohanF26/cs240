@@ -17,6 +17,17 @@ FBLUserNode::FBLUserNode(FBLUser* fblu){
 
 }
 
+FBLUserNode::~FBLUserNode(){
+  if(user != nullptr){
+    //delete this user
+    delete user;
+  }
+  if(next != nullptr){
+    //call destructor for next user node
+    delete next;
+  }
+}
+
 FBLUser* FBLUserNode::getUser(){
   return user;
 }

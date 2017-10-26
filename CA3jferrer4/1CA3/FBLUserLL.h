@@ -15,6 +15,9 @@ class FBLUserLL{
     FBLUserLL();
     FBLUserLL(FBLUserNode* fblun);
 
+    //destructor
+    ~FBLUserLL();
+
     FBLUserNode* getHead();
     void setHead(FBLUserNode* fblun);
 

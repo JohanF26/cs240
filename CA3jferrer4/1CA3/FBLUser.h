@@ -26,6 +26,8 @@ class FBLUser {
 		FBLUser();
 		FBLUser(string f, string l, string uID, string pw);
 
+		~FBLUser();
+
 		string getUserID();
 		void setUserID(string uID);
 

@@ -26,6 +26,16 @@ FBLUser::FBLUser(string f, string l, string uID, string pw){
 
 }
 
+FBLUser::~FBLUser(){
+  if(feed != nullptr){
+    delete feed;
+  }
+  if(wall != nullptr){
+    delete wall;
+  }
+  userFriends.clear();
+}
+
 //User ID
 string FBLUser::getUserID(){
   return userID;

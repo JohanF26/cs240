@@ -109,6 +109,7 @@ int main(int argc, char *argv[]){
         cout << "Command not supported. Please try again.\n---------------" << endl;
       }
     }
+    delete userList;
 }
 
 

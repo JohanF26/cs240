@@ -18,6 +18,12 @@ FBLPostLL::FBLPostLL(FBLPostNode* p){
 
 }
 
+FBLPostLL::~FBLPostLL(){
+  if(head != nullptr){
+    delete head;
+  }
+}
+
 FBLPostNode* FBLPostLL::getHead(){
   return head;
 

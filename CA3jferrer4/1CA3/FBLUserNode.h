@@ -16,6 +16,9 @@ class FBLUserNode{
     FBLUserNode();
     FBLUserNode(FBLUser* fblu);
 
+    //destructor
+    ~FBLUserNode();
+
     FBLUser* getUser();
     void setUser(FBLUser* fblu);
 

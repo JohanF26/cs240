@@ -14,6 +14,8 @@ class FBLPost{
     FBLPost();
     FBLPost(string p);
 
+    //does not need a destructor since it is just a string
+
     string getPost();
     void setPost(string p);
 
