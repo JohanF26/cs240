@@ -84,7 +84,11 @@ int main(int argc, char *argv[]){
                 } else{
                   //if not then update the node and redefine the user
                   tempNode = tempNode->getNextUser();
-                  tempUser = tempNode->getUser();
+                  if(tempNode != nullptr){
+                    tempUser = tempNode->getUser();
+                  } else{
+                    tempUser = nullptr;
+                  }
                 }
               }
               //this will be true when no one with this ID is found

@@ -33,7 +33,9 @@ FBLUser::~FBLUser(){
   if(wall != nullptr){
     delete wall;
   }
-  userFriends.clear();
+  //userFriends.clear();
+  //This leaves the vector on the stack so it is automatically deallocated
+  userFriends = vector<FBLUser*>();
 }
 
 //User ID
