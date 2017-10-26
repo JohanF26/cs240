@@ -16,6 +16,8 @@ class FBLPostLL{
 		FBLPostLL();
 		FBLPostLL(FBLPostNode* p);
 
+		~FBLPostLL();
+
 		FBLPostNode* getHead();
 
 		//put post into linked list

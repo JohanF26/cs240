@@ -13,6 +13,12 @@ FBLUserLL::FBLUserLL(FBLUserNode* fblun){
   head = fblun;
 }
 
+FBLUserLL::~FBLUserLL(){
+  if(head != nullptr){
+    delete head;
+  }
+}
+
 FBLUserNode* FBLUserLL::getHead(){
   return head;
 }
