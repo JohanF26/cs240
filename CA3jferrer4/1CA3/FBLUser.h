@@ -45,9 +45,10 @@ class FBLUser {
 		//Feed fundtions
 		FBLPostLL* getFeed();
 		void printFeed();
+		vector<FBLUser*> getUserFriends();
 
 		//Wall functions
-		void befriend(string id);
+		bool befriend(FBLUser* newFriend);
 		void printFriends();
 
 };
