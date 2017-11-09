@@ -1,8 +1,8 @@
 
 all: FBLite
 
-FBLite: Driver.o FBLPost.o FBLPostLL.o FBLPostNode.o FBLUser.o FBLUserLL.o FBLUserNode.o
-				g++ Driver.o FBLPost.o FBLPostLL.o FBLPostNode.o FBLUser.o FBLUserLL.o FBLUserNode.o -o FBLite
+FBLite: Driver.o FBLPost.o FBLPostLL.o FBLPostNode.o FBLUser.o FBLUserLL.o FBLUserNode.o FBLComment.o FBLCommentLL.o FBLCommentNode.o
+				g++ Driver.o FBLPost.o FBLPostLL.o FBLPostNode.o FBLUser.o FBLUserLL.o FBLUserNode.o FBLComment.o FBLCommentLL.o FBLCommentNode.o -o FBLite
 
 Driver.o: Driver.cpp
 				g++ -c -g Driver.cpp
@@ -24,6 +24,15 @@ FBLUserLL.o: FBLUserLL.cpp
 
 FBLUserNode.o: FBLUserNode.cpp
 				g++ -c -g FBLUserNode.cpp
+
+FBLComment.o: FBLComment.cpp
+				g++ -c -g FBLComment.cpp
+
+FBLCommentNode.o: FBLCommentNode.cpp
+				g++ -c -g FBLCommentNode.cpp
+
+FBLCommentLL.o: FBLCommentLL.cpp
+				g++ -c -g FBLCommentLL.cpp
 
 clean:
 				rm -f *.o FBLite

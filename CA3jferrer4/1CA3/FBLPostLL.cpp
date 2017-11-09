@@ -40,7 +40,8 @@ void FBLPostLL::insertPost(FBLPostNode* p){
 
 }
 
-void FBLPostLL::readPost(){
+unsigned int FBLPostLL::readPost(){
+  int currPostID = 0;
   if(head == nullptr){
     //if the head is null then there is nothing to read
     cout << "Nothing to READ.\n---------------" << endl;
@@ -48,6 +49,9 @@ void FBLPostLL::readPost(){
     //if head is not nullptr then we just need to make sure next post is nullptr
     //print out post and make it a nullptr
     cout << "Post:" << head->getPost()->getPost() << "\n---------------" << endl;
+    //retrieves original post ID
+    currPostID = head->getPost()->getPostID();
+    //gets rid of this post
     head = nullptr;
   } else {
     //otherwise iterate through list to get last post
@@ -68,6 +72,8 @@ void FBLPostLL::readPost(){
     }
     //print out post, dealocate memory, and make it a nullptr
     cout << "Post:" << iterator->getPost()->getPost() << "\n---------------" << endl;
+    //retrieves original post ID
+    currPostID = iterator->getPost()->getPostID();
     delete iterator;
     iterator = nullptr;
     newLastPost->setNextPost(iterator);
@@ -75,6 +81,8 @@ void FBLPostLL::readPost(){
     //for newLastPost to be last post the next should be a nullptr
     //newLastPost->setNextPost(nullptr);
   }
+  //if 0 is returned there is nothing to read which is good since no posts have 0 ID
+  return currPostID;
 }
 
 

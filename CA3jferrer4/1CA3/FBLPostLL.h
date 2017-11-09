@@ -24,7 +24,7 @@ class FBLPostLL{
 		void insertPost(FBLPostNode* p);
 
 		//read post and remove it from list
-		void readPost();
+		unsigned int readPost();
 		void printWall();
 
 };
