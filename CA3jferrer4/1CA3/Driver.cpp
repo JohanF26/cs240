@@ -6,6 +6,10 @@
 
 using namespace std;
 
+void findMin(FBLUserNode* it1, FBLUserNode* it2, FBLUserNode* it3, FBLUserNode* beforeMin, FBLUserNode* minNode, FBLUserNode* afterMin){
+
+}
+
 int main(int argc, char *argv[]){
     cout << "Facebook Lite Version" << "\n---------------" << endl;
     FBLUserLL* userList = new FBLUserLL();
@@ -24,7 +28,7 @@ int main(int argc, char *argv[]){
     bool postFound = false;
     while(command != "QUIT"){
       //First Level Menu
-      cout << "Enter a command.\nChoose from the following commands:\n\"CREATE <user id> <password> <first name> <last name>\"\n\"LOGIN <user id> <password>\"\n\"QUIT\"\n---------------" << endl;
+      cout << "Enter a command.\nChoose from the following commands:\n\"CREATE <user id> <password> <first name> <last name>\"\n\"LOGIN <user id> <password>\"\n\"USERS\"\n\"SORTUSERS\"\n\"QUIT\"\n---------------" << endl;
       cin >> command;
       cout << "---------------" << endl;
       if(command == "CREATE"){
@@ -223,6 +227,80 @@ int main(int argc, char *argv[]){
             }
           }
         }
+      } else if(command == "USERS"){
+        FBLUserNode* uNIterator = userList->getHead();
+        while(uNIterator!= nullptr){
+          cout << uNIterator->getUser()->getLast() << ", " << uNIterator->getUser()->getFirst() << " <" << uNIterator->getUser()->getUserID() << ">" << endl;
+          uNIterator = uNIterator->getNextUser();
+        }
+        cout << "---------------" << endl;
+      } else if(command == "SORTUSERS"){
+        FBLUserNode* it1 = nullptr;
+        FBLUserNode* it2 = userList->getHead();
+        FBLUserNode* it3 = it2->getNextUser();
+
+        FBLUserNode* beforeMin = nullptr;
+        FBLUserNode* minNode = userList->getHead();
+        FBLUserNode* afterMin = nullptr;
+        if(minNode != nullptr){
+          afterMin = minNode->getNextUser();
+        }
+
+        FBLUserNode* lastObject = nullptr;
+
+        FBLUserLL* newUserList = new FBLUserLL();
+
+        while(it2 != nullptr){
+          it1 = nullptr;
+          it2 = userList->getHead();
+          it3 = it2->getNextUser();
+
+          beforeMin = nullptr;
+          minNode = userList->getHead();
+          afterMin = nullptr;
+          if(minNode != nullptr){
+            afterMin = minNode->getNextUser();
+          }
+
+          lastObject = nullptr;
+          //loop to set minNode to smallest element
+          while(it2!= nullptr){
+            if(it2->getUser()->getLast() < minNode->getUser()->getLast()){
+              beforeMin = it1;
+              minNode = it2;
+              afterMin = it3;
+            }
+            it1 = it2;
+            it2 = it3;
+            if(it3 != nullptr){
+              it3 = it3->getNextUser();
+            }
+          }
+
+          minNode->setNextUser(nullptr);
+          if(newUserList->getHead() == nullptr){
+            newUserList->setHead(minNode);
+          } else {
+            lastObject = newUserList->getHead();
+            while(lastObject->getNextUser() != nullptr){
+              lastObject = lastObject->getNextUser();
+            }
+            //add next smallest object to the new list
+            lastObject->setNextUser(minNode);
+          }
+          //mends gap in original list
+          if(beforeMin != nullptr){
+            beforeMin->setNextUser(afterMin);
+          } else {
+            userList->setHead(afterMin);
+          }
+          it2 = userList->getHead();
+        }
+
+        if(newUserList->getHead() != nullptr){
+          userList = newUserList;
+        }
+
       } else if(command != "QUIT"){
         cout << "Command not supported. Please try again.\n---------------" << endl;
       }
