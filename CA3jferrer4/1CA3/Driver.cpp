@@ -6,10 +6,6 @@
 
 using namespace std;
 
-void findMin(FBLUserNode* it1, FBLUserNode* it2, FBLUserNode* it3, FBLUserNode* beforeMin, FBLUserNode* minNode, FBLUserNode* afterMin){
-
-}
-
 int main(int argc, char *argv[]){
     cout << "Facebook Lite Version" << "\n---------------" << endl;
     FBLUserLL* userList = new FBLUserLL();
@@ -126,7 +122,7 @@ int main(int argc, char *argv[]){
                       //if post is not found get the next user node
                       uNIterator = uNIterator->getNextUser();
                     }
-                    cout << "Comment successful added!" << endl;
+                    cout << "Comment successfuly added!\n---------------" << endl;
                   } else if(postCommand == "READ_AZ"){
                     postFound = false;
                     FBLUserNode* uNIterator = userList->getHead();

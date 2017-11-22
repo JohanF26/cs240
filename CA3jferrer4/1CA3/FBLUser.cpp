@@ -92,7 +92,7 @@ void FBLUser::printWall(){
   //continue until there isn't a next post
   if(iterator != nullptr){
     while(iterator != nullptr){
-      cout << iterator->getPost()->getPost() << endl;
+      cout << "Likes: " << iterator->getPost()->getLikes() << " " << iterator->getPost()->getPost() << endl;
       iterator = iterator->getNextPost();
     }
     cout << "---------------" << endl;
